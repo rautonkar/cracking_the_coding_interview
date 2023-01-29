@@ -1,5 +1,5 @@
 /******************************************************************************
-2.1 Remove Dups (Not ready):
+2.1 Remove Dups:
 Write code to remove duplicates from a linked list
 FOLLOW duplicates
 How would you solve this problem if a temporary buffer is not available
@@ -27,9 +27,9 @@ void delete_next_node(node_t * p_node)
 
 void delete_duplicates(node_t * p_root)
 {
-    for(node_t * p_runner = p_root; p_runner->next != NULL; p_runner = p_runner->next)
+    for(node_t * p_runner = p_root; (p_runner != NULL) && (p_runner->next != NULL) ; p_runner = p_runner->next)
     {
-        for(node_t * p_comp = p_runner; p_comp->next != NULL; p_comp = p_comp->next)
+        for(node_t * p_comp = p_runner; (p_comp != NULL) && (p_comp->next != NULL) ; p_comp = p_comp->next)
         {
             if(p_runner->val == p_comp->next->val)
             {
@@ -89,6 +89,8 @@ int main(void)
                 .next = NULL,
             },
         };
+        printf("\n");
+        print_nodes (&list[0]);
         delete_duplicates(&list[0]);
         print_nodes (&list[0]);
     }
@@ -129,6 +131,8 @@ int main(void)
                 .next = NULL,
             },
         };
+        printf("\n");
+        print_nodes (&list[0]);
         delete_duplicates(&list[0]);
         print_nodes (&list[0]);
     }
@@ -169,8 +173,53 @@ int main(void)
                 .next = NULL,
             },
         };
+        printf("\n");
+        print_nodes (&list[0]);
         delete_duplicates(&list[0]);
         print_nodes (&list[0]);
+    }
+    
+    {
+        node_t list[] = 
+        {
+            [0] = {
+                .val = 1,
+                .next = &list[1],
+            },
+            [1] = {
+                .val = 2,
+                .next = &list[2],
+            },
+            [2] = {
+                .val = 3,
+                .next = &list[3],
+            },
+            [3] = {
+                .val = 4,
+                .next = &list[4],
+            },
+            [4] = {
+                .val = 4,
+                .next = &list[5],
+            },
+            [5] = {
+                .val = 6,
+                .next = &list[6],
+            },
+            [6] = {
+                .val = 7,
+                .next = &list[7],
+            },
+            [7] = {
+                .val = 8,
+                .next = NULL,
+            },
+        };
+        printf("\n");
+        print_nodes (&list[0]);
+        delete_duplicates(&list[0]);
+        print_nodes (&list[0]);
+        
     }
     
     
